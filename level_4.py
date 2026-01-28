@@ -8,7 +8,7 @@ class CommsError(Exception):
 
 class RelayPacket(Packet):
     def __init__(self, packet_to_relay, sender, proxy):
-        super().__init__(sender, proxy, packet_to_relay)
+        super().__init__(packet_to_relay, sender, proxy)
     def __repr__(self):
         return f'Relaying[{self.data}] to {self.receiver} from {self.sender}'
 
@@ -51,6 +51,6 @@ def transmission_attempt(paket: Packet):
 if __name__ == '__main__':
     try:
         transmission_attempt(paket_to_relay)
-    except:
-        print('something went wrong')
+    except Exception as e:
+        print(f'Critical Error: {e}')
 
